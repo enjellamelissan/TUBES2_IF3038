@@ -1,3 +1,11 @@
+<?php
+if (isset($_GET['status'])) {
+	$status = $_GET['status'];
+	$message = true;
+} else {
+	$message = false;
+}
+?>
 <!-- created by Enjella-->
 
 <!DOCTYPE html>
@@ -11,6 +19,13 @@
 	</head>
 	
 	<body id="mainpagebackground">
+		<?php
+		if ($message == true) {
+			if ($status == 1) echo '<div id="message">Wrong Username or Password</div>';
+			else if ($status == 2) echo '<div id="message">You have successfully logged out</div>';
+			else if ($status == 3) echo '<div id="message">You need to be logged in</div>';
+		}
+		?>
 		<div id="wrapper">
                     
 			<div id="header">
@@ -24,7 +39,7 @@
 					</ul>
                                         <!--buat munculin popupbox nih-->
                                         <div id ="droplogin">
-                                                <form action="" method="post">
+                                                <form action="login.php" method="post">
                                                         <div class="popuplogin">
                                                                Username &nbsp;:
                                                                 <input type ="text" name="inputusername" size ="14" id = "usernameku" autocomplete="on"/>
@@ -35,8 +50,8 @@
                                                                 
                                                                 <br />
                                                         </div>
+                                               			<input type="submit" value="login" name="submit"/>
                                                 </form>
-                                               <input type="submit" value="login" name="submit" onclick="validateLogin()"/>
                                        </div>
                                         <div class ="searchoption">
                                             <input class="searchbox" type="text" value="Input search" onfocus="searchFocus(this)" onblur="searchBox(this)" />

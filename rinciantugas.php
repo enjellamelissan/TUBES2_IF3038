@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(!isset( $_SESSION['myusername'])){
+	header("location:index.php?status=3");
+}
+?>
 <!-- created by Enjella-->
 
 <!DOCTYPE html>
@@ -20,7 +26,7 @@
 					<ul>
 						<li id="menuhome2"><a href="dashboard.php">DASHBOARD</a></li>
 						<li id="menudkonten2"><a href="profil.php">PROFIL</a></li>
-						<li id="menuregister2"><a href="javascript:void(0)" onclick="validateLogout()">LOGOUT</a></li>
+						<li id="menuregister2"><a href="logout.php">LOGOUT</a></li>
 					</ul>
 					
 					<div class ="searchoption">

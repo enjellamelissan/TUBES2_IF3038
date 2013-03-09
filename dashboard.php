@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(!isset( $_SESSION['myusername'])){
+	header("location:index.php?status=3");
+}
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -17,7 +23,7 @@
 					<ul>
 						<li id="menudb"><a href="dashboard.php">DASHBOARD</a></li>
 						<li id="menuprof"><a href="profil.php">PROFIL</a></li>
-						<li id="menulo"><a href="javascript:void(0)" onclick="validateLogout()">LOGOUT</a></li>
+						<li id="menulo"><a href="logout.php">LOGOUT</a></li>
 						<!--search masih belum nih-->
 					</ul>
                                     <div class ="searchoption">
