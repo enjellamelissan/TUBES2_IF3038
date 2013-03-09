@@ -1,7 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Content-Type" content="text/php; charset=utf-8" />
 		<title>TUBESPROGIN - POST</title>
 		<link rel="stylesheet" type="text/css" href="style.css" title="style1" />
 		<link rel="stylesheet" type="text/css" href="style2.css" title="style2" />
@@ -11,12 +11,12 @@
 		<div id="wrapper">
 			<div id="header">
 				<div id="logo">
-					<a href="dashboard.html"><img src="images/logo.png" alt="Logo" width="300" height="100" /></a>
+					<a href="dashboard.php"><img src="images/logo.png" alt="Logo" width="300" height="100" /></a>
 				</div>
 				<div id="menu">
 					<ul>
-						<li id="menuhome2"><a href="dashboard.html">DASHBOARD</a></li>
-						<li id="menudkonten2"><a href="profil.html">PROFIL</a></li>
+						<li id="menuhome2"><a href="dashboard.php">DASHBOARD</a></li>
+						<li id="menudkonten2"><a href="profil.php">PROFIL</a></li>
 						<li id="menuregister2"><a href="javascript:void(0)" onclick="validateLogout()">LOGOUT</a></li>
 					</ul>
 				</div>
@@ -62,7 +62,7 @@
 								<div class="clear" id="error-tgl"></div>
 								<div class="register-label">Asignee</div><div class="register-td">:</div><div class="register-input"><input class="register-input-input" type="text" name="asignee" id="asignee"/></div>
 								<div class="clear error" id="error-username"></div>
-								<div class="register-label">Tag</div><div class="register-td">:</div><div class="register-input"><input class="register-input-input" type="text" name="judul" id="judul"/><ul><div><a href="profil.html"></a></div>
+								<div class="register-label">Tag</div><div class="register-td">:</div><div class="register-input"><input class="register-input-input" type="text" name="judul" id="judul"/><ul><div><a href="profil.php"></a></div>
 								</ul></div>
 															
 								<div class="post-register-submit"><input type="button" id = "post1" name="post" value="OK" onclick="postContent()" disabled/></div>
@@ -98,8 +98,8 @@
 				</div>
 				<div id="botlink">
 				<ul>
-					<li><a href="dashboard.html">DASHBOARD</a></li>
-					<li><a href="profil.html">PROFIL</a></li>
+					<li><a href="dashboard.php">DASHBOARD</a></li>
+					<li><a href="profil.php">PROFIL</a></li>
 					<li><a href="javascript:void(0)" onclick="validateLogout()">LOGOUT</a></li>
 				</ul>
 				</div>

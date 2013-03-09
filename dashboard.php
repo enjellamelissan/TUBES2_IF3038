@@ -1,7 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Content-Type" content="text/php; charset=utf-8" />
 		<title>TUBESPROGIN - rinciantugas</title>
 		<link rel="stylesheet" type="text/css" href="style.css" title="style1" />
 		<link rel="stylesheet" type="text/css" href="style2.css" title="style2" />
@@ -11,12 +11,12 @@
 		<div id="wrapper">
 			<div id="header">
 				<div id="logo">
-					<a href="dashboard.html"><img src="images/logo.png" alt="Logo" width="300" height="100" /></a>
+					<a href="dashboard.php"><img src="images/logo.png" alt="Logo" width="300" height="100" /></a>
 				</div>
 				<div id="menu">
 					<ul>
-						<li id="menudb"><a href="dashboard.html">DASHBOARD</a></li>
-						<li id="menuprof"><a href="profil.html">PROFIL</a></li>
+						<li id="menudb"><a href="dashboard.php">DASHBOARD</a></li>
+						<li id="menuprof"><a href="profil.php">PROFIL</a></li>
 						<li id="menulo"><a href="javascript:void(0)" onclick="validateLogout()">LOGOUT</a></li>
 						<!--search masih belum nih-->
 					</ul>
@@ -50,11 +50,11 @@
 
                                         <a class="close" href="#close"></a>
                                     </div>
-                                    <a href ="rinciantugas.html">
+                                    <a href ="rinciantugas.php">
                                         <img onmouseover="javascript:getDashboardFocus('task1');" src ="images/Prog_In.png" id="task1" alt="task" style="cursor:pointer" />
                                     </a>
                                     <img onmouseover="javascript:getDashboardFocus('task2');" src ="images/dateschedule.png" id="task2" alt="task2" style="cursor:pointer" />
-                                    <a href ="post.html"><input id ="newtask" type="button" name="Tugas Baru" value="newtask" disabled="true"/></a>
+                                    <a href ="post.php"><input id ="newtask" type="button" name="Tugas Baru" value="newtask" disabled="true"/></a>
                                 </div>
                                 <div id="rincian">
 
@@ -75,8 +75,8 @@
 				</div>
 				<div id="botlink">
 				<ul>
-					<li><a href="dashboard.html">DASHBOARD</a></li>
-					<li><a href="profil.html">PROFIL</a></li>
+					<li><a href="dashboard.php">DASHBOARD</a></li>
+					<li><a href="profil.php">PROFIL</a></li>
 					<li><a href="javascript:void(0)" onclick="validateLogout()">LOGOUT</a></li>
 				</ul>
 				</div>

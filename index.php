@@ -1,9 +1,9 @@
 <!-- created by Enjella-->
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Content-Type" content="text/php; charset=utf-8" />
 		<title>TUBESPROGIN - MAINPAGE</title>
 		<link rel="stylesheet" type="text/css" href="style.css" title="style1" />
 		<link rel="stylesheet" type="text/css" href="style2.css" title="style2" />
@@ -78,7 +78,7 @@
 								<div class="clear" id="error-sex"></div>
 								<div class="register-label">About me</div><div class="register-td">:</div><div class="register-input"><textarea class="register-input-input" name="about" rows="5" cols="50"></textarea></div>
 								<div class="clear"></div>
-								<div class="register-submit"><input type="button" name="register" value="Daftar" disabled="disabled" id="form-button" onclick="window.location='profil.html'" /></div>
+								<div class="register-submit"><input type="button" name="register" value="Daftar" disabled="disabled" id="form-button" onclick="window.location='profil.php'" /></div>
 							</form>
 						</div>
 					</div>

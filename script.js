@@ -102,25 +102,25 @@ function validateLogin() {
 	}
 	if (login ==true)
 	{
-		window.location='profil.html';
+		window.location='profil.php';
 	}
 	else
 	{
-		window.location='mainpage.html';
+		window.location='index.php';
 	}
 }
 
 function validateLogout() {
 	login = false;
-	window.location='mainpage.html';
+	window.location='index.php';
 }
 
 function editTask() {
-	window.location='rinciantugas2.html';
+	window.location='rinciantugas2.php';
 }
 
 function editTask2() {
-	window.location='rinciantugas.html';
+	window.location='rinciantugas.php';
 }
 
 function validateTaskName()
