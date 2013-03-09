@@ -9,7 +9,7 @@ function checkext(a) {
 				s = a.charAt(i) + s;
 			}
 		}
-		if (s == "jpeg" || s == "jpg") return true;
+		if (s.toLowerCase() == "jpeg" || s.toLowerCase() == "jpg") return true;
 	}
 }
 function validate() {
@@ -131,8 +131,8 @@ function changemonth(tahun) {
 }
 function tangkap(hari,bulan,tahun) {
 	var hasil = tahun;
-	if (bulan < 10) hasil += "-0" + bulan;
-	else hasil += "-" + bulan;
+	if (bulan < 10) hasil += "-0" + (bulan + 1);
+	else hasil += "-" + (bulan + 1);
 	if (hari < 10) hasil +=  "-0" + hari;
 	else hasil +=  "-" + hari;
 	document.getElementById('calendar').innerHTML = "";

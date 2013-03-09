@@ -1,4 +1,8 @@
 <?php
+session_start();
+if(isset( $_SESSION['myusername'])){
+	header("location:profil.php");
+}
 if (isset($_GET['status'])) {
 	$status = $_GET['status'];
 	$message = true;
@@ -24,6 +28,7 @@ if (isset($_GET['status'])) {
 			if ($status == 1) echo '<div id="message">Wrong Username or Password</div>';
 			else if ($status == 2) echo '<div id="message">You have successfully logged out</div>';
 			else if ($status == 3) echo '<div id="message">You need to be logged in</div>';
+			else if ($status == 4) echo '<div id="message">You have successfully registered</div>';
 		}
 		?>
 		<div id="wrapper">
@@ -72,7 +77,7 @@ if (isset($_GET['status'])) {
 							SIGN UP
 						</div>
 						<div class="isi">
-							<form action="" method="get">
+							<form action="register.php" method="post">
 								<div class="register-label btg-mrh" id="btg">*) wajib diisi</div>
 								<div class="clear"></div>
 								<div class="register-label">Username <span class="btg-mrh">*</span></div><div class="register-td">:</div><div class="register-input"><input class="register-input-input" type="text" name="username" id="form-username" onkeyup="validate()" /></div>
@@ -93,7 +98,7 @@ if (isset($_GET['status'])) {
 								<div class="clear" id="error-sex"></div>
 								<div class="register-label">About me</div><div class="register-td">:</div><div class="register-input"><textarea class="register-input-input" name="about" rows="5" cols="50"></textarea></div>
 								<div class="clear"></div>
-								<div class="register-submit"><input type="button" name="register" value="Daftar" disabled="disabled" id="form-button" onclick="window.location='profil.php'" /></div>
+								<div class="register-submit"><input type="submit" name="register" value="Daftar" disabled="disabled" id="form-button"/></div>
 							</form>
 						</div>
 					</div>

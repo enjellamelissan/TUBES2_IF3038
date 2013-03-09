@@ -165,6 +165,7 @@ function validateExtentionName()
 		y =y.concat(x.charAt(i));
 		
 	}
+	y=y.toLowerCase();
 	if ((y==".jar")||(y==".avi")||(y==".mp4")||(y==".mp3")||(y==".jpg")||(y==".jpeg")||(y==".txt") ){
 		
 			document.getElementById("demo").innerHTML="Input valid";
