@@ -1,5 +1,4 @@
 <?php
-
 $host="localhost"; // Host name 
 $username="progin"; // Mysql username 
 $password="progin"; // Mysql password 
@@ -29,8 +28,8 @@ $count=mysql_num_rows($result);
 if($count==1){
 
 	// Register $myusername, $mypassword and redirect to file "login_success.php"
-	session_register("myusername");
-	session_register("mypassword"); 
+	session_start(); 
+	$_SESSION['myusername'] = $myusername;
 	header("location:profil.php");
 }
 else {
