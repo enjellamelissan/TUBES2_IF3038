@@ -27,9 +27,16 @@ $count=mysql_num_rows($result);
 // If result matched $myusername and $mypassword, table row must be 1 row
 if($count==1){
 
-	// Register $myusername, $mypassword and redirect to file "login_success.php"
+	// Register $_SESSION
 	session_start(); 
 	$_SESSION['myusername'] = $myusername;
+	$row = mysql_fetch_array($result);
+	$_SESSION['fullname'] = $row['fullname'];
+	$_SESSION['birthdate'] = $row['birthdate'];
+	$_SESSION['email'] = $row['email'];
+	$_SESSION['avatar'] = $row['avatar'];
+	$_SESSION['gender'] = $row['gender'];
+	$_SESSION['about'] = $row['about'];
 	header("location:profil.php");
 }
 else {

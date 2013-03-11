@@ -41,17 +41,17 @@ if(!isset( $_SESSION['myusername'])){
 							PROFIL
 						</div>
 						<div class="isi">
-							<img src="images/enjella.jpg" alt="gambar 1" height="400" width="600"/>
+							<img src=<?php echo $_SESSION['avatar'];?> alt="gambar 1" height="400" width="600"/>
 						</div>
 						
 					
-						<div class="profilefont"> Username		: enjellan </div>
-						<div class="profilefont"> Nama Lengkap	: Enjella Melissa Nababan </div>
-						<div class="profilefont"> Tanggal lahir : 3 Maret 1991 </div>
-						<div class="profilefont"> Email			: enjellamelissan@yahoo.com </div>
-						<div class="profilefont"> Jenis Kelamin : perempuan </div>
+						<div class="profilefont"> Username		: <?php echo $_SESSION['myusername'];?> </div>
+						<div class="profilefont"> Nama Lengkap	: <?php echo $_SESSION['fullname'];?> </div>
+						<div class="profilefont"> Tanggal lahir : <?php echo $_SESSION['birthdate'];?> </div>
+						<div class="profilefont"> Email			: <?php echo $_SESSION['email'];?> </div>
+						<div class="profilefont"> Jenis Kelamin : <?php if ($_SESSION['gender'] == 'M') echo 'laki-laki'; else echo 'perempuan';?> </div>
                                                 <div class="profilefont"> Tugas : Pemrograman Internet </div>
-						<div class="profilefont"> About me		: ................. </div>
+						<div class="profilefont"> About me		: <?php echo $_SESSION['about'];?> </div>
 						<div class="register-submit"><input type="button" name="register" value="Edit" disabled="able" id="form-button"  /></div>
 						
 						

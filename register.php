@@ -34,7 +34,7 @@ $about=$_POST['about'];
 
 
 // To protect MySQL injection (more detail about MySQL injection)
-$sql="INSERT INTO $tbl_name(username,password,fullname,birthdate,email,avatar,about) VALUES ('$username',sha1('$password'),'$fullname','$birthdate','$email','$avatar','$about')";
+$sql="INSERT INTO $tbl_name(username,password,fullname,birthdate,email,avatar,gender,about) VALUES ('$username',sha1('$password'),'$fullname','$birthdate','$email','$avatar',$gender,'$about')";
 $result=mysql_query($sql);
 
 header("location:index.php?status=4");
