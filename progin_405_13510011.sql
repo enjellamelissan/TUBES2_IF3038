@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 12, 2013 at 11:30 AM
+-- Generation Time: Mar 12, 2013 at 02:11 PM
 -- Server version: 5.1.66
 -- PHP Version: 5.3.3-7+squeeze15
 
@@ -18,9 +18,9 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Database: `progin_405_13510011`
 --
-DROP DATABASE IF EXISTS progin_405_13510011;
-CREATE DATABASE progin_405_13510011;
-USE progin_405_13510011;
+DROP DATABASE IF EXISTS `progin_405_13510011`;
+CREATE DATABASE `progin_405_13510011`;
+USE `progin_405_13510011`;
 
 -- --------------------------------------------------------
 
@@ -45,6 +45,30 @@ INSERT INTO `assignees` (`member`, `task`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `attachments`
+--
+
+CREATE TABLE IF NOT EXISTS `attachments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `path` varchar(256) NOT NULL,
+  `filetype` varchar(5) NOT NULL,
+  `task` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `attachments_ibfk1` (`task`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `attachments`
+--
+
+INSERT INTO `attachments` (`id`, `path`, `filetype`, `task`) VALUES
+(1, 'images/Up.png', 'file', 1),
+(2, 'images/gajah.png', 'image', 1),
+(3, 'images/movie.ogg', 'video', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `categories`
 --
 
@@ -62,6 +86,31 @@ CREATE TABLE IF NOT EXISTS `categories` (
 INSERT INTO `categories` (`id`, `name`) VALUES
 (1, 'Pemrograman Internet'),
 (2, 'Date');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE IF NOT EXISTS `comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `member` int(11) NOT NULL,
+  `task` int(11) NOT NULL,
+  `timestamp` datetime NOT NULL,
+  `comment` text NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `comments_ibfk1` (`member`),
+  KEY `comments_ibfk2` (`task`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `member`, `task`, `timestamp`, `comment`) VALUES
+(1, 2, 1, '2013-03-12 13:56:30', 'Does it work?'),
+(2, 1, 1, '2013-03-12 13:56:47', 'Yes, it does');
 
 -- --------------------------------------------------------
 
@@ -109,8 +158,7 @@ CREATE TABLE IF NOT EXISTS `members` (
 
 INSERT INTO `members` (`id`, `username`, `password`, `fullname`, `birthdate`, `email`, `avatar`, `gender`, `about`) VALUES
 (1, 'enjellan', 'de4ab6e26db462b930510ba83e9f80b7db2bef88', 'Enjella Melissa Nababan', '1991-03-03', 'enjellamelissan@yahoo.com', 'images/enjella.JPG', 'F', ''),
-(2, 'danny', '0c258ac8c40b49eea99ecbd24e31b1d72aa42772', 'Danny Andrianto', '0000-00-00', 'email', 'images/danny.jpg', 'M', 'about'),
-(6, 'upload', '41ae8cf7f1ec7edf8c7cc1f77e800593e14aa265', 'Upload Test', '2002-08-20', 'upload@file.test', 'images/niouw.JPG', 'M', '');
+(2, 'danny', '0c258ac8c40b49eea99ecbd24e31b1d72aa42772', 'Danny Andrianto', '0000-00-00', 'email', 'images/danny.jpg', 'M', 'about');
 
 -- --------------------------------------------------------
 
@@ -147,6 +195,7 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   `timestamp` datetime NOT NULL,
   `deadline` datetime NOT NULL,
   `category` int(11) NOT NULL,
+  `done` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `tasks_ibfk1` (`creator`),
   KEY `tasks_ibfk2` (`category`)
@@ -156,7 +205,7 @@ CREATE TABLE IF NOT EXISTS `tasks` (
 -- Dumping data for table `tasks`
 --
 
-INSERT INTO `tasks` (`id`, `name`, `creator`, `timestamp`, `deadline`, `category`) VALUES
-(1, 'Tubes 1', 1, '2013-02-20 10:50:49', '2013-02-25 22:00:00', 1),
-(2, 'Tubes 2', 2, '2013-03-11 21:20:11', '2013-03-22 22:03:00', 1),
-(3, 'Kencan dengan si "dia"', 1, '2013-02-20 21:21:53', '2013-02-24 20:00:00', 2);
+INSERT INTO `tasks` (`id`, `name`, `creator`, `timestamp`, `deadline`, `category`, `done`) VALUES
+(1, 'Tubes 1', 1, '2013-02-20 10:50:49', '2013-02-25 22:00:00', 1, 1),
+(2, 'Tubes 2', 2, '2013-03-11 21:20:11', '2013-03-22 22:03:00', 1, 0),
+(3, 'Kencan dengan si "dia"', 1, '2013-02-20 21:21:53', '2013-02-24 20:00:00', 2, 1);
