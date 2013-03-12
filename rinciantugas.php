@@ -3,6 +3,40 @@ session_start();
 if(!isset( $_SESSION['myusername'])){
 	header("location:index.php?status=3");
 }
+$id_task= $_GET['id'];
+$host="localhost"; // Host name 
+$username="progin"; // Mysql username 
+$password="progin"; // Mysql password 
+$db_name="progin_405_13510011"; // Database name
+
+// Connect to server and select databse.
+$con=mysqli_connect($host,$username,$password,$db_name);
+if (mysqli_connect_errno()) {
+	echo "Failed to connect to MySQL: ".mysqli_connect_error();
+}
+// Get task
+$result1=mysqli_query($con,"SELECT * FROM `tasks` WHERE id=$id_task");
+$task = mysqli_fetch_array($result1);
+$id_creator = $task['creator'];
+// Get creator
+$result2=mysqli_query($con,"SELECT * FROM `members` WHERE id=$id_creator");
+$creator = mysqli_fetch_array($result2);
+// Get assignee
+$result3=mysqli_query($con,"SELECT * FROM `assignees` WHERE task=$id_task");
+$count_assignee = 0;
+while ($assigned = mysqli_fetch_array($result3)) {
+	$id_assignee = $assigned['member'];
+	$result4=mysqli_query($con,"SELECT * FROM `members` WHERE id=$id_assignee");
+	$assignee[$count_assignee] = mysqli_fetch_array($result4);
+	$count_assignee++;
+}
+// Get tags
+$result5=mysqli_query($con,"SELECT * FROM `tags` WHERE tagged=$id_task");
+$count_tag = 0;
+while ($tagged = mysqli_fetch_array($result5)) {
+	$tag[$count_tag] = $tagged['name'];
+	$count_tag++;
+}
 ?>
 <!-- created by Enjella-->
 
@@ -41,7 +75,7 @@ if(!isset( $_SESSION['myusername'])){
 					</div>
 					<div class="tengah">
 						<div class="judul">
-							Pemrograman Internet
+							<?php echo $task['name'];?>
 						</div>
                                             <div id ="dashboardimage"><img src="images/Prog_In.png" alt="dashboardimgprogin"/></div>
 						<div class="isi">
@@ -50,19 +84,34 @@ if(!isset( $_SESSION['myusername'])){
                         
 						<div class="detail">
 							<div class="byon">
-								Posted by <strong><span class="by">Enjella</span></strong> on <strong>February 20, 2013</strong>
+								Posted by <strong><span class="by"><?php echo $creator['username'];?></span></strong> on <strong><?php echo $task['timestamp'];?></strong>
 							</div>
 							
 							<div class="byon">
-								Deadline : <strong>February 25, 2013</strong>
+								Deadline : <strong><?php echo $task['deadline'];?></strong>
 							</div>
 							
 							<div class="byon">
-								Assignee : <strong>Vincen, Kevin</strong>
+								Assignee : <strong>
+								<?php
+								for ($i = 0; $i < $count_assignee; $i++) {
+									$current=$assignee[$i];
+									echo $current['username'];
+									if ($i < $count_assignee - 1) echo ", ";
+								}
+								?>
+								</strong>
 							</div>
 							
                                                         <div class="byon">
-								Tag : <strong>html, css, javascript</strong>
+								Tag : <strong>
+								<?php
+								for ($i = 0; $i < $count_tag; $i++) {
+									echo $tag[$i];
+									if ($i < $count_tag - 1) echo ",";
+								}
+								?>
+								</strong>
 							</div>
                                                     
 							<div class="likedislike">
@@ -96,7 +145,7 @@ if(!isset( $_SESSION['myusername'])){
 								<div class="line-konten"></div>
 								<div class="komen-nama">Enjella</div>
 								<div class="komen-tgl">| February 20, 2013 at 23:59</div>
-								<div class="komen-isi">Finally, it's work !</div>
+								<div class="komen-isi">Finally, it works !</div>
 								<div class="line-konten"></div>
 							</div>
 							<form action="" method="get">
@@ -136,3 +185,4 @@ if(!isset( $_SESSION['myusername'])){
 		<script type="text/javascript" src="rinciantugas.js"></script>
 	</body>
 </html>
+<?php mysqli_close($con);?>
