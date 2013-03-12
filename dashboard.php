@@ -3,6 +3,18 @@ session_start();
 if(!isset( $_SESSION['myusername'])){
 	header("location:index.php?status=3");
 }
+$host="localhost"; // Host name 
+$username="progin"; // Mysql username 
+$password="progin"; // Mysql password 
+$db_name="progin_405_13510011"; // Database name
+
+// Connect to server and select databse.
+$con=mysqli_connect($host,$username,$password,$db_name);
+if (mysqli_connect_errno()) {
+	echo "Failed to connect to MySQL: ".mysqli_connect_error();
+}
+$result=mysqli_query($con,"SELECT DISTINCT `category` FROM `tasks`");
+$cats=mysqli_num_rows($result);
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -56,20 +68,43 @@ if(!isset( $_SESSION['myusername'])){
 
                                         <a class="close" href="#close"></a>
                                     </div>
-                                    <a href ="rinciantugas.php">
+                                    <?php                                    
+									$id = $_SESSION['id'];
+									$result1=mysqli_query($con,"SELECT * FROM `tasks` WHERE creator='$id'");
+									while ($row=mysqli_fetch_array($result1)) {
+                                    ?>
+                                    <!--<a href ="rinciantugas.php">
                                         <img onmouseover="javascript:getDashboardFocus('task1');" src ="images/Prog_In.png" id="task1" alt="task" style="cursor:pointer" />
                                     </a>
-                                    <img onmouseover="javascript:getDashboardFocus('task2');" src ="images/dateschedule.png" id="task2" alt="task2" style="cursor:pointer" />
                                     <a href ="post.php"><input id ="newtask" type="button" name="Tugas Baru" value="newtask" disabled="true"/></a>
+                                    <img onmouseover="javascript:getDashboardFocus('task2');" src ="images/dateschedule.png" id="task2" alt="task2" style="cursor:pointer" />
+                                    <a href ="post.php"><input id ="newtask" type="button" name="Tugas Baru" value="newtask" disabled="true"/></a>-->
+                                    <div onmouseover="javascript:showtask(<?php echo $row['category'];?>,<?php echo $cats;?>);"><?php echo $row['name'];?></div>
+                                    <a href ="post.php"><input id ="newtask" type="button" name="Tugas Baru" value="newtask"/></a>
+                                    <?php
+									}
+                                    ?>
                                 </div>
                                 <div id="rincian">
-
+									<?php
+									//$result2=mysqli_query($con,"SELECT DISTINCT `category` FROM `tasks`");
+									//while ($category=mysqli_fetch_array($result2)) {
+									for ($idc=1; $idc<=$cats; $idc++) {
+										// $idc = $category['category'];
+										echo "<div id='".$idc."'>";
+										$result3=mysqli_query($con,"SELECT * FROM `tasks` WHERE category='$idc'");
+										while ($task=mysqli_fetch_array($result3)) {
+											echo "<a href='rinciantugas.php'>".$task['name']."</a><br />";
+										}
+										echo "<br /></div>";
+									}
+									?>
                                     <!--end of pop up-->
                                     <div class="atas"></div>
 									<div class="tengah"><img src ="images/ProginBig.png" alt="task" />
 									<img src ="images/DateBig.png" alt="tasklv" /></div>
-									<div class="bawah"></div>";
-									</div>
+									<div class="bawah"></div>;
+								</div>
 				</div>
 			
 		<div id="footer">

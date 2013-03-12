@@ -4,11 +4,12 @@ $host="localhost"; // Host name
 $username="progin"; // Mysql username 
 $password="progin"; // Mysql password 
 $db_name="progin_405_13510011"; // Database name 
-$tbl_name="members"; // Table name 
 
 // Connect to server and select databse.
-mysql_connect("$host", "$username", "$password")or die("cannot connect"); 
-mysql_select_db("$db_name")or die("cannot select DB");
+$con=mysqli_connect($host,$username,$password,$db_name);
+if (mysqli_connect_errno()) {
+	echo "Failed to connect to MySQL: ".mysqli_connect_error();
+}
 
 // post data 
 $username=$_POST['username']; 
@@ -32,10 +33,7 @@ if ($_POST['sex']=="male") {
 }
 $about=$_POST['about'];
 
-
-// To protect MySQL injection (more detail about MySQL injection)
-$sql="INSERT INTO $tbl_name(username,password,fullname,birthdate,email,avatar,gender,about) VALUES ('$username',sha1('$password'),'$fullname','$birthdate','$email','$avatar',$gender,'$about')";
-$result=mysql_query($sql);
+$result=mysql_query($con,"INSERT INTO `members` (username,password,fullname,birthdate,email,avatar,gender,about) VALUES ('$username',sha1('$password'),'$fullname','$birthdate','$email','$avatar',$gender,'$about')");
 
 header("location:index.php?status=4");
 

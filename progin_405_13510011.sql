@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.9
+-- version 3.3.7deb7
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 09, 2013 at 02:29 PM
--- Server version: 5.5.8
--- PHP Version: 5.3.5
+-- Generation Time: Mar 12, 2013 at 11:30 AM
+-- Server version: 5.1.66
+-- PHP Version: 5.3.3-7+squeeze15
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -15,12 +15,73 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
-CREATE DATABASE IF NOT EXISTS progin_405_13510011;
-USE progin_405_13510011;
-
 --
 -- Database: `progin_405_13510011`
 --
+DROP DATABASE IF EXISTS progin_405_13510011;
+CREATE DATABASE progin_405_13510011;
+USE progin_405_13510011;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `assignees`
+--
+
+CREATE TABLE IF NOT EXISTS `assignees` (
+  `member` int(11) NOT NULL,
+  `task` int(11) NOT NULL,
+  PRIMARY KEY (`member`,`task`),
+  KEY `assignees_ibfk2` (`task`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `assignees`
+--
+
+INSERT INTO `assignees` (`member`, `task`) VALUES
+(2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`) VALUES
+(1, 'Pemrograman Internet'),
+(2, 'Date');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `editors`
+--
+
+CREATE TABLE IF NOT EXISTS `editors` (
+  `member` int(11) NOT NULL,
+  `category` int(11) NOT NULL,
+  PRIMARY KEY (`member`,`category`),
+  KEY `editors_ibfk2` (`category`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `editors`
+--
+
+INSERT INTO `editors` (`member`, `category`) VALUES
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -38,7 +99,8 @@ CREATE TABLE IF NOT EXISTS `members` (
   `avatar` varchar(50) NOT NULL,
   `gender` char(1) NOT NULL,
   `about` text,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
@@ -47,5 +109,54 @@ CREATE TABLE IF NOT EXISTS `members` (
 
 INSERT INTO `members` (`id`, `username`, `password`, `fullname`, `birthdate`, `email`, `avatar`, `gender`, `about`) VALUES
 (1, 'enjellan', 'de4ab6e26db462b930510ba83e9f80b7db2bef88', 'Enjella Melissa Nababan', '1991-03-03', 'enjellamelissan@yahoo.com', 'images/enjella.JPG', 'F', ''),
-(2, 'danny', 'dd4d08d87ba83bfdefa1cfdd60e23094f379edd3', 'Danny Andrianto', '0000-00-00', 'email', 'images/danny.jpg', '', 'about'),
-(6, 'upload', '41ae8cf7f1ec7edf8c7cc1f77e800593e14aa265', 'Upload Test', '2002-08-20', 'upload@file.test', 'images/niouw.JPG', '', '');
+(2, 'danny', '0c258ac8c40b49eea99ecbd24e31b1d72aa42772', 'Danny Andrianto', '0000-00-00', 'email', 'images/danny.jpg', 'M', 'about'),
+(6, 'upload', '41ae8cf7f1ec7edf8c7cc1f77e800593e14aa265', 'Upload Test', '2002-08-20', 'upload@file.test', 'images/niouw.JPG', 'M', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tags`
+--
+
+CREATE TABLE IF NOT EXISTS `tags` (
+  `name` varchar(50) NOT NULL,
+  `tagged` int(11) NOT NULL,
+  PRIMARY KEY (`name`,`tagged`),
+  KEY `tags_ibfk1` (`tagged`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tags`
+--
+
+INSERT INTO `tags` (`name`, `tagged`) VALUES
+('css', 1),
+('html', 1),
+('javascript', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tasks`
+--
+
+CREATE TABLE IF NOT EXISTS `tasks` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `creator` int(11) NOT NULL,
+  `timestamp` datetime NOT NULL,
+  `deadline` datetime NOT NULL,
+  `category` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `tasks_ibfk1` (`creator`),
+  KEY `tasks_ibfk2` (`category`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `tasks`
+--
+
+INSERT INTO `tasks` (`id`, `name`, `creator`, `timestamp`, `deadline`, `category`) VALUES
+(1, 'Tubes 1', 1, '2013-02-20 10:50:49', '2013-02-25 22:00:00', 1),
+(2, 'Tubes 2', 2, '2013-03-11 21:20:11', '2013-03-22 22:03:00', 1),
+(3, 'Kencan dengan si "dia"', 1, '2013-02-20 21:21:53', '2013-02-24 20:00:00', 2);

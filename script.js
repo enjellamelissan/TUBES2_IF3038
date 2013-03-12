@@ -191,3 +191,12 @@ function validatePostTask()
 		document.getElementById("post1").disabled = true;
 	}
 }
+
+//Danny Andrianto
+function showtask(cat, num) {
+	var i;
+	for (i = 1; i <= num; i++) {
+		if (i==cat) document.getElementById(i.toString()).style.display="block";
+		else document.getElementById(i.toString()).style.display="none";
+	}
+}
