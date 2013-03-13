@@ -94,7 +94,9 @@ $cats=mysqli_num_rows($result);
 										echo "<div id='".$idc."'>";
 										$result3=mysqli_query($con,"SELECT * FROM `tasks` WHERE category='$idc'");
 										while ($task=mysqli_fetch_array($result3)) {
-											echo "<a href='rinciantugas.php'>".$task['name']."</a><br />";
+									?>
+									<a href="rinciantugas.php?id=<?php echo $task['id'];?>"><?php echo $task['name']?></a><br />
+									<?php
 										}
 										echo "<br /></div>";
 									}
@@ -126,3 +128,4 @@ $cats=mysqli_num_rows($result);
                 </div>
 	</body>
 </html>
+<?php mysqli_close($con);?>
