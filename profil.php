@@ -41,19 +41,48 @@ if(!isset( $_SESSION['myusername'])){
 							PROFIL
 						</div>
 						<div class="isi">
-							<img src=<?php echo $_SESSION['avatar'];?> alt="gambar 1" height="400" width="600"/>
+							<img src=<?php echo $_SESSION['avatar'];?> alt="avatar"/>
 						</div>
 						
-					
+						<div id="profiledetail">
 						<div class="profilefont"> Username		: <?php echo $_SESSION['myusername'];?> </div>
 						<div class="profilefont"> Nama Lengkap	: <?php echo $_SESSION['fullname'];?> </div>
 						<div class="profilefont"> Tanggal lahir : <?php echo $_SESSION['birthdate'];?> </div>
 						<div class="profilefont"> Email			: <?php echo $_SESSION['email'];?> </div>
 						<div class="profilefont"> Jenis Kelamin : <?php if ($_SESSION['gender'] == 'M') echo 'laki-laki'; else echo 'perempuan';?> </div>
-                                                <div class="profilefont"> Tugas : Pemrograman Internet </div>
+                        <div class="profilefont"> Tugas :
+                        <?php 
+                        	$host="localhost"; // Host name 
+							$username="progin"; // Mysql username 
+							$password="progin"; // Mysql password 
+							$db_name="progin_405_13510011"; // Database name
+
+							// Connect to server and select databse.
+							$con=mysqli_connect($host,$username,$password,$db_name);
+							if (mysqli_connect_errno()) {
+								echo "Failed to connect to MySQL: ".mysqli_connect_error();
+							}
+
+							$member_id=$_SESSION['id'];
+							$result1=mysqli_query($con,"SELECT * FROM `assignees` WHERE member=$member_id");
+							$count=mysqli_num_rows($result1);
+							if ($count > 0) {
+								echo '<br /><ol>';
+								while ($row=mysqli_fetch_array($result1)) {
+									$task_id=$row['task'];
+									$result2=mysqli_query($con,"SELECT * FROM tasks WHERE id=$task_id");
+									$task=mysqli_fetch_array($result2);
+									echo '<li>'.$task['name'].'</li>';
+								}
+								echo '</ol>';
+							}
+
+							mysqli_close($con);
+                        ?>
+                        </div>
 						<div class="profilefont"> About me		: <?php echo $_SESSION['about'];?> </div>
 						<div class="register-submit"><input type="button" name="register" value="Edit" disabled="able" id="form-button"  /></div>
-						
+						</div>
 						
 						
 					<div class="bawah">
